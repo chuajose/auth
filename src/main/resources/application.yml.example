@@ -1,0 +1,55 @@
+attachment:
+  invoice: path_to_file
+
+spring:
+  jwt:
+    secret: changeMe!!!
+  mail:
+    host: smtp.mailtrap.io
+    port: 2525
+    username: changeme
+    password: changeme
+    #templates:
+    #  path: mail-templates
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  datasource:
+    url: ${JDBC_DATABASE_URL:jdbc:mysql://changeme:3306/changeme?useSSL=false}
+    username: ${JDBC_DATABASE_USERNAME:changeme}
+    password: ${JDBC_DATABASE_PASSWORD:changeme}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  dbcp2:
+    max-wait-millis: 30000
+    validation-query: "SELECT 1"
+    validation-query-timeout: 30
+  thymeleaf:
+    cache: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        id:
+          new_generator_mappings: true
+springdoc:
+  version: ${springdoc.version}
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui-custom.html
+    operationsSorter: alpha
+    tagsSorter: alpha
+
