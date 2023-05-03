@@ -30,9 +30,7 @@ public class JwtTokenUtil {
 	
 	public boolean validateAccessToken(String token) {
 		try {
-			System.out.println(token);
-
-			Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
+			Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
 			return true;
 		} catch (ExpiredJwtException ex) {
 			LOGGER.error("JWT expired", ex.getMessage());
@@ -44,6 +42,8 @@ public class JwtTokenUtil {
 			LOGGER.error("JWT is not supported", ex);
 		} catch (SignatureException ex) {
 			LOGGER.error("Signature validation failed");
+		}catch (JwtException ex){
+			LOGGER.error("Signature validation failed"+ ex.getMessage());
 		}
 		
 		return false;
@@ -62,7 +62,7 @@ public class JwtTokenUtil {
 	public boolean validateRefreshToken(String token) {
 		System.out.println(token);
 		try {
-			Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
+			Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
 			return true;
 		} catch (ExpiredJwtException ex) {
 			LOGGER.error("JWT expired", ex.getMessage());
@@ -84,8 +84,9 @@ public class JwtTokenUtil {
 	}
 	
 	private Claims parseClaims(String token) {
-		return Jwts.parser()
+		return Jwts.parserBuilder()
 				.setSigningKey(SECRET_KEY)
+				.build()
 				.parseClaimsJws(token)
 				.getBody();
 	}

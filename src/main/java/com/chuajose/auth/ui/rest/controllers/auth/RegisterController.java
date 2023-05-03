@@ -1,7 +1,7 @@
 package com.chuajose.auth.ui.rest.controllers.auth;
 
 import com.chuajose.auth.domains.user.models.User;
-import com.chuajose.auth.domains.user.services.RegisterUser;
+import com.chuajose.auth.domains.auth.services.RegisterUser;
 import com.chuajose.auth.ui.rest.controllers.ApiController;
 import com.chuajose.auth.ui.rest.controllers.auth.request.RegisterRequest;
 import jakarta.validation.Valid;

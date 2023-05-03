@@ -30,7 +30,7 @@ import freemarker.template.TemplateException;
 @Service("EmailService")
 public class EmailServiceImpl implements EmailService {
 
-    private static final String NOREPLY_ADDRESS = "noreply@baeldung.com";
+    private static final String NOREPLY_ADDRESS = "noreply@chuajose.com";
 
     @Autowired
     private JavaMailSender emailSender;
